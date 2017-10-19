@@ -17,12 +17,7 @@ fi
 # Set the external host and port
 if [ ! -z "$ADVERTISED_HOST" ]; then
     echo "advertised host: $ADVERTISED_HOST"
-    if grep -q "^advertised.listeners" $KAFKA_HOME/config/server.properties; then
-        # DIL 2017-10-13 I have no idea why this sed command does not modify the file when run from this script...
-        sed -r -i "s/(advertised\.listeners)=(.*)/\1=PLAINTEXT:\/\/$ADVERTISED_HOST:$ADVERTISED_PORT/g" $KAFKA_HOME/config/server.properties
-    else
-        echo "advertised.listeners=PLAINTEXT://$ADVERTISED_HOST:$ADVERTISED_PORT" >> $KAFKA_HOME/config/server.properties
-    fi
+    sed -r -i "s/\#?advertised\.listeners=.*/advertised.listeners=PLAINTEXT:\/\/$ADVERTISED_HOST:$ADVERTISED_PORT/g" $KAFKA_HOME/config/server.properties;
 fi
 
 # Set the zookeeper chroot

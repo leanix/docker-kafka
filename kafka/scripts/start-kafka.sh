@@ -16,8 +16,7 @@ fi
 
 # Mounted kubernetes configMap values are read only. Since we need to write to the server.properties file
 # we mount the data to /tmp and then copy it to the target folder to be modified. https://github.com/kubernetes/kubernetes/issues/62099
-echo "Copying /tmp/server.properties to ${KAFKA_HOME}/config/server.properties"
-cp /tmp/server.properties $KAFKA_HOME/config/server.properties
+cp -v /tmp/server.properties $KAFKA_HOME/config/server.properties
 
 
 # Set the external host and port

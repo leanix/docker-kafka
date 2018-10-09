@@ -14,6 +14,10 @@ if [ ! -z "$HELIOS_PORT_kafka" ]; then
     ADVERTISED_PORT=`echo $HELIOS_PORT_kafka | cut -d':' -f 2`
 fi
 
+# Mounted kubernetes configMap values are read only. Since we need to write to the server.properties file
+# we mount the data to /tmp and then copy it to the target folder to be modified. https://github.com/kubernetes/kubernetes/issues/62099
+cp -v /tmp/server.properties $KAFKA_HOME/config/server.properties
+
 # Set the external host and port
 if [ ! -z "$ADVERTISED_HOST" ]; then
     echo "advertised host: $ADVERTISED_HOST"

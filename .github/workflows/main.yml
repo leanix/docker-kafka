@@ -14,3 +14,4 @@ jobs:
       - uses: leanix/release-docker-image-action@master
         with:
           name: leanix/docker-kafka
+          path: kafka/

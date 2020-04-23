@@ -1,0 +1,16 @@
+name: Publish new version
+on: [push]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: leanix/secrets-action@master
+        with:
+          secret-store-credentials: ${{ secrets.INJECTED_SECRET_STORE_CREDENTIALS }}
+
+      - uses: leanix/release-docker-image-action@master
+        with:
+          name: leanix/docker-kafka

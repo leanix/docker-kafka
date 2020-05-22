@@ -8,6 +8,11 @@
 # * LOG_RETENTION_BYTES: configure the size at which segments are pruned from the log, (default is 1073741824, for 1GB)
 # * NUM_PARTITIONS: configure the default number of log partitions per topic
 
+# Use a custom template file for server.properties
+if [ -f $KAFKA_HOME/templates/server.properties ]; then
+    cp -v $KAFKA_HOME/templates/server.properties $KAFKA_HOME/config/server.properties
+fi
+
 # Configure advertised host/port if we run in helios
 if [ ! -z "$HELIOS_PORT_kafka" ]; then
     ADVERTISED_HOST=`echo $HELIOS_PORT_kafka | cut -d':' -f 1 | xargs -n 1 dig +short | tail -n 1`

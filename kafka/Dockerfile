@@ -12,6 +12,7 @@ RUN apt-get update && \
     apt-get install -y zookeeper wget supervisor dnsutils && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean && \
+    cd /tmp && \
     wget -q http://apache.mirrors.spacedump.net/kafka/"$KAFKA_VERSION"/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION".tgz -O /tmp/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION".tgz && \
     echo "447A7057BCD9FACA98B6F4807BD6019EF73EEE90EFDC1E7B10005F669E2537A8A190CB8B9C9F4C20DB1D95B13D0F0487E9CC560D0759532058439CE7F722C7CD kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz" | sha512sum -c - && \
     tar xfz /tmp/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION".tgz -C /opt && \

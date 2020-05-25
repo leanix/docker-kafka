@@ -9,8 +9,8 @@
 # * NUM_PARTITIONS: configure the default number of log partitions per topic
 
 # Use a custom template file for server.properties
-if [ -f $KAFKA_HOME/templates/server.properties ]; then
-    cp -v $KAFKA_HOME/templates/server.properties $KAFKA_HOME/config/server.properties
+if [ -f "$KAFKA_HOME"/templates/server.properties ]; then
+    cp -v "$KAFKA_HOME"/templates/server.properties "$KAFKA_HOME"/config/server.properties
 fi
 
 # Configure advertised host/port if we run in helios
